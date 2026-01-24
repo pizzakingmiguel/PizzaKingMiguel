@@ -390,74 +390,9 @@
                     Any pizza scoring 7.5 or above earns this honor
                 </div>
 
-                <div class="sample-rankings">
+                <div class="sample-rankings" id="rankings-container">
                     <h3 style="color: #ff0000;">Top Rated Pizzas</h3>
-                    
-                    <div class="ranking-item">
-                        <div>
-                            <strong>Apollonias</strong>
-                            <div style="color: #999; font-size: 0.9rem;">Los Angeles, CA • Thin Crust</div>
-                        </div>
-                        <div style="display: flex; align-items: center;">
-                            <span class="ranking-score">10.0</span>
-                            <span class="knighted-icon">👑</span>
-                        </div>
-                    </div>
-
-                    <div class="ranking-item">
-                        <div>
-                            <strong>Bestia</strong>
-                            <div style="color: #999; font-size: 0.9rem;">Los Angeles, CA • Artisan</div>
-                        </div>
-                        <div style="display: flex; align-items: center;">
-                            <span class="ranking-score">9.1</span>
-                            <span class="knighted-icon">👑</span>
-                        </div>
-                    </div>
-
-                    <div class="ranking-item">
-                        <div>
-                            <strong>Milo & Olive</strong>
-                            <div style="color: #999; font-size: 0.9rem;">Los Angeles, CA • Artisan</div>
-                        </div>
-                        <div style="display: flex; align-items: center;">
-                            <span class="ranking-score">9.1</span>
-                            <span class="knighted-icon">👑</span>
-                        </div>
-                    </div>
-
-                    <div class="ranking-item">
-                        <div>
-                            <strong>Pizzeria Bianco</strong>
-                            <div style="color: #999; font-size: 0.9rem;">Los Angeles, CA • Artisan</div>
-                        </div>
-                        <div style="display: flex; align-items: center;">
-                            <span class="ranking-score">9.1</span>
-                            <span class="knighted-icon">👑</span>
-                        </div>
-                    </div>
-
-                    <div class="ranking-item">
-                        <div>
-                            <strong>Pizzana</strong>
-                            <div style="color: #999; font-size: 0.9rem;">Los Angeles, CA • Neapolitan</div>
-                        </div>
-                        <div style="display: flex; align-items: center;">
-                            <span class="ranking-score">8.4</span>
-                            <span class="knighted-icon">👑</span>
-                        </div>
-                    </div>
-
-                    <div class="ranking-item">
-                        <div>
-                            <strong>Little Dynamite Pizza</strong>
-                            <div style="color: #999; font-size: 0.9rem;">Los Angeles, CA • Detroit-style</div>
-                        </div>
-                        <div style="display: flex; align-items: center;">
-                            <span class="ranking-score">8.2</span>
-                            <span class="knighted-icon">👑</span>
-                        </div>
-                    </div>
+                    <p style="color: #999; font-style: italic; margin: 1rem 0;">Loading rankings...</p>
                 </div>
             </div>
         </section>
@@ -472,47 +407,122 @@
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
         
         <script>
-            // Initialize map centered on Los Angeles
-            const map = L.map('pizza-map').setView([34.0522, -118.2437], 11);
+            const SHEET_ID = '1UwKJ83i-8mKFW5zLXxOraIf5IOKgQW5XPVes1TlNFPs';
+            const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
 
-            // Add dark tile layer
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-                maxZoom: 19
-            }).addTo(map);
+            // Fetch data from Google Sheets
+            async function loadPizzaData() {
+                try {
+                    const response = await fetch(SHEET_URL);
+                    const text = await response.text();
+                    const json = JSON.parse(text.substring(47).slice(0, -2));
+                    
+                    const rows = json.table.rows;
+                    const pizzas = rows.map(row => ({
+                        name: row.c[0]?.v || '',
+                        location: row.c[1]?.v || '',
+                        address: row.c[2]?.v || '',
+                        score: parseFloat(row.c[3]?.v) || 0,
+                        style: row.c[4]?.v || '',
+                        website: row.c[5]?.v || '',
+                        instagram: row.c[6]?.v || ''
+                    })).filter(p => p.name && p.score > 0);
 
-            // Pizza locations
-            const pizzas = [
-                { name: "Apollonias", lat: 34.0619, lng: -118.3452, score: 10.0, style: "Thin Crust" },
-                { name: "Bestia", lat: 34.0367, lng: -118.2332, score: 9.1, style: "Artisan" },
-                { name: "Milo & Olive", lat: 34.0377, lng: -118.4823, score: 9.1, style: "Artisan" },
-                { name: "Pizzeria Bianco", lat: 34.0368, lng: -118.2587, score: 9.1, style: "Artisan" },
-                { name: "Pizzana", lat: 34.0523, lng: -118.4736, score: 8.4, style: "Neapolitan" },
-                { name: "Little Dynamite Pizza", lat: 34.0382, lng: -118.4784, score: 8.2, style: "Detroit-style" }
-            ];
+                    // Sort by score descending
+                    pizzas.sort((a, b) => b.score - a.score);
 
-            // Custom red marker icon
-            const redIcon = L.divIcon({
-                className: 'custom-marker',
-                html: '<div style="background: #ff0000; width: 30px; height: 30px; border-radius: 50%; border: 3px solid #000; display: flex; align-items: center; justify-content: center; font-size: 18px;">🍕</div>',
-                iconSize: [30, 30],
-                iconAnchor: [15, 15]
-            });
+                    displayRankings(pizzas);
+                    displayMap(pizzas);
+                } catch (error) {
+                    console.error('Error loading pizza data:', error);
+                    document.getElementById('rankings-container').innerHTML = '<p style="color: #ff0000;">Error loading rankings. Please refresh the page.</p>';
+                }
+            }
 
-            // Add markers
-            pizzas.forEach(pizza => {
-                const marker = L.marker([pizza.lat, pizza.lng], { icon: redIcon }).addTo(map);
+            function displayRankings(pizzas) {
+                const container = document.getElementById('rankings-container');
+                let html = '<h3 style="color: #ff0000;">Top Rated Pizzas</h3>';
                 
-                const popupContent = `
-                    <div style="color: #000; font-family: Arial, sans-serif; min-width: 200px;">
-                        <h3 style="margin: 0 0 8px 0; color: #ff0000; font-size: 18px; font-weight: bold;">${pizza.name}</h3>
-                        <p style="margin: 4px 0; font-size: 14px;"><strong>Style:</strong> ${pizza.style}</p>
-                        <p style="margin: 4px 0; font-size: 14px;"><strong>Score:</strong> <span style="background: #ff0000; color: #fff; padding: 2px 8px; border-radius: 12px; font-weight: bold;">${pizza.score}</span> ${pizza.score >= 7.5 ? '👑' : ''}</p>
-                    </div>
-                `;
+                pizzas.forEach(pizza => {
+                    const isKnighted = pizza.score >= 7.5;
+                    html += `
+                        <div class="ranking-item">
+                            <div>
+                                <strong>${pizza.name}</strong>
+                                <div style="color: #999; font-size: 0.9rem;">${pizza.location} • ${pizza.style}</div>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <span class="ranking-score">${pizza.score.toFixed(1)}</span>
+                                ${isKnighted ? '<span class="knighted-icon">👑</span>' : ''}
+                            </div>
+                        </div>
+                    `;
+                });
                 
-                marker.bindPopup(popupContent);
-            });
+                container.innerHTML = html;
+            }
+
+            function displayMap(pizzas) {
+                // Initialize map centered on LA
+                const map = L.map('pizza-map').setView([34.0522, -118.2437], 11);
+
+                // Add dark tile layer
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                    attribution: '&copy; OpenStreetMap &copy; CARTO',
+                    maxZoom: 19
+                }).addTo(map);
+
+                // Custom red marker icon
+                const redIcon = L.divIcon({
+                    className: 'custom-marker',
+                    html: '<div style="background: #ff0000; width: 30px; height: 30px; border-radius: 50%; border: 3px solid #000; display: flex; align-items: center; justify-content: center; font-size: 18px;">🍕</div>',
+                    iconSize: [30, 30],
+                    iconAnchor: [15, 15]
+                });
+
+                // Geocode addresses and add markers
+                pizzas.forEach(async pizza => {
+                    if (pizza.address) {
+                        try {
+                            // Use Nominatim for geocoding
+                            const geoResponse = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(pizza.address)}`);
+                            const geoData = await geoResponse.json();
+                            
+                            if (geoData && geoData[0]) {
+                                const lat = parseFloat(geoData[0].lat);
+                                const lng = parseFloat(geoData[0].lon);
+                                
+                                const marker = L.marker([lat, lng], { icon: redIcon }).addTo(map);
+                                
+                                const isKnighted = pizza.score >= 7.5;
+                                let popupContent = `
+                                    <div style="color: #000; font-family: Arial, sans-serif; min-width: 220px;">
+                                        <h3 style="margin: 0 0 8px 0; color: #ff0000; font-size: 18px; font-weight: bold;">${pizza.name}</h3>
+                                        <p style="margin: 4px 0; font-size: 14px;"><strong>Style:</strong> ${pizza.style}</p>
+                                        <p style="margin: 4px 0; font-size: 14px;"><strong>Score:</strong> <span style="background: #ff0000; color: #fff; padding: 2px 8px; border-radius: 12px; font-weight: bold;">${pizza.score.toFixed(1)}</span> ${isKnighted ? '👑' : ''}</p>
+                                `;
+                                
+                                if (pizza.website) {
+                                    popupContent += `<p style="margin: 8px 0 4px 0;"><a href="${pizza.website}" target="_blank" style="color: #ff0000; text-decoration: none; font-weight: bold;">🌐 Visit Website</a></p>`;
+                                }
+                                
+                                if (pizza.instagram) {
+                                    popupContent += `<p style="margin: 4px 0;"><a href="${pizza.instagram}" target="_blank" style="color: #ff0000; text-decoration: none; font-weight: bold;">📸 View on Instagram</a></p>`;
+                                }
+                                
+                                popupContent += '</div>';
+                                
+                                marker.bindPopup(popupContent);
+                            }
+                        } catch (error) {
+                            console.error(`Error geocoding ${pizza.name}:`, error);
+                        }
+                    }
+                });
+            }
+
+            // Load data when page loads
+            loadPizzaData();
         </script>
 
         <section id="pizza-types">
