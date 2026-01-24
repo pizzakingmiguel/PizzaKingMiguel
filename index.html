@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pizza King Miguel - Honest Pizza Reviews</title>
-    <style>
+            <style>
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
         
         * {
@@ -333,13 +333,30 @@
         <p class="tagline">Finding the best pizza NY → CA → 🌍</p>
     </header>
 
+    <section class="hero-section">
+        <div class="hero-content">
+            <img src="hero-pizza.jpg" alt="Miguel with pizzas" class="hero-image">
+            <div class="hero-text">
+                <h2>About Pizza King</h2>
+                <p>I'm not a chef or a professional food critic, just someone who genuinely loves pizza and has spent a long time paying attention to it. Over the years, pizza has become something I seek out wherever I go, and this site is a place to collect those experiences, opinions, and ongoing debates (NY vs CA included).</p>
+                
+                <p>What I've learned along the way is that pizza has a unique way of bringing people together. It shows up at celebrations, late nights, family dinners, and casual hangouts. Some of the happiest moments I've seen revolve around a good pie. I've also learned that great pizza isn't limited to one city or one style; you can find it almost anywhere if you're willing to look.</p>
+                
+                <p>I rate pizzas on a 1–10 scale, considering things like dough, balance, execution, and overall experience. Pizzas that score 7.5 or higher earn the title "Knighted by the Pizza King."</p>
+                
+                <p>This isn't about declaring a single best pizza. It's about understanding who each slice is for, finding great pizza wherever it exists, and connecting with the pizza community along the way.</p>
+                
+                <p><strong>Follow along as I keep eating, traveling, and refining my taste, one slice at a time.</strong></p>
+            </div>
+        </div>
+    </section>
+
     <nav>
         <ul>
             <li><a href="#social">Follow</a></li>
             <li><a href="#rankings">Rankings</a></li>
             <li><a href="#pizza-types">Pizza Types</a></li>
             <li><a href="#merch">Merch</a></li>
-            <li><a href="#about">About</a></li>
         </ul>
     </nav>
 
@@ -375,21 +392,128 @@
 
                 <div class="sample-rankings">
                     <h3 style="color: #ff0000;">Top Rated Pizzas</h3>
-                    <p style="color: #999; font-style: italic;">Rankings will be added as reviews are published. Check back soon or follow on social media for the latest reviews.</p>
                     
-                    <div class="ranking-item" style="opacity: 0.3;">
+                    <div class="ranking-item">
                         <div>
-                            <strong>Example Pizza Place</strong>
-                            <div style="color: #666; font-size: 0.9rem;">Location • Style</div>
+                            <strong>Apollonias</strong>
+                            <div style="color: #999; font-size: 0.9rem;">Los Angeles, CA • Thin Crust</div>
                         </div>
                         <div style="display: flex; align-items: center;">
-                            <span class="ranking-score">8.5</span>
+                            <span class="ranking-score">10.0</span>
+                            <span class="knighted-icon">👑</span>
+                        </div>
+                    </div>
+
+                    <div class="ranking-item">
+                        <div>
+                            <strong>Bestia</strong>
+                            <div style="color: #999; font-size: 0.9rem;">Los Angeles, CA • Artisan</div>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <span class="ranking-score">9.1</span>
+                            <span class="knighted-icon">👑</span>
+                        </div>
+                    </div>
+
+                    <div class="ranking-item">
+                        <div>
+                            <strong>Milo & Olive</strong>
+                            <div style="color: #999; font-size: 0.9rem;">Los Angeles, CA • Artisan</div>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <span class="ranking-score">9.1</span>
+                            <span class="knighted-icon">👑</span>
+                        </div>
+                    </div>
+
+                    <div class="ranking-item">
+                        <div>
+                            <strong>Pizzeria Bianco</strong>
+                            <div style="color: #999; font-size: 0.9rem;">Los Angeles, CA • Artisan</div>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <span class="ranking-score">9.1</span>
+                            <span class="knighted-icon">👑</span>
+                        </div>
+                    </div>
+
+                    <div class="ranking-item">
+                        <div>
+                            <strong>Pizzana</strong>
+                            <div style="color: #999; font-size: 0.9rem;">Los Angeles, CA • Neapolitan</div>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <span class="ranking-score">8.4</span>
+                            <span class="knighted-icon">👑</span>
+                        </div>
+                    </div>
+
+                    <div class="ranking-item">
+                        <div>
+                            <strong>Little Dynamite Pizza</strong>
+                            <div style="color: #999; font-size: 0.9rem;">Los Angeles, CA • Detroit-style</div>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <span class="ranking-score">8.2</span>
                             <span class="knighted-icon">👑</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <section id="map">
+            <h2>Pizza Map</h2>
+            <div id="pizza-map" style="width: 100%; height: 600px; background: #0a0a0a; border-radius: 8px; border: 2px solid #ff0000;"></div>
+            <p style="text-align: center; margin-top: 1rem; color: #999; font-size: 0.9rem;">Click markers to see pizza details</p>
+        </section>
+
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        
+        <script>
+            // Initialize map centered on Los Angeles
+            const map = L.map('pizza-map').setView([34.0522, -118.2437], 11);
+
+            // Add dark tile layer
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                maxZoom: 19
+            }).addTo(map);
+
+            // Pizza locations
+            const pizzas = [
+                { name: "Apollonias", lat: 34.0619, lng: -118.3452, score: 10.0, style: "Thin Crust" },
+                { name: "Bestia", lat: 34.0367, lng: -118.2332, score: 9.1, style: "Artisan" },
+                { name: "Milo & Olive", lat: 34.0377, lng: -118.4823, score: 9.1, style: "Artisan" },
+                { name: "Pizzeria Bianco", lat: 34.0368, lng: -118.2587, score: 9.1, style: "Artisan" },
+                { name: "Pizzana", lat: 34.0523, lng: -118.4736, score: 8.4, style: "Neapolitan" },
+                { name: "Little Dynamite Pizza", lat: 34.0382, lng: -118.4784, score: 8.2, style: "Detroit-style" }
+            ];
+
+            // Custom red marker icon
+            const redIcon = L.divIcon({
+                className: 'custom-marker',
+                html: '<div style="background: #ff0000; width: 30px; height: 30px; border-radius: 50%; border: 3px solid #000; display: flex; align-items: center; justify-content: center; font-size: 18px;">🍕</div>',
+                iconSize: [30, 30],
+                iconAnchor: [15, 15]
+            });
+
+            // Add markers
+            pizzas.forEach(pizza => {
+                const marker = L.marker([pizza.lat, pizza.lng], { icon: redIcon }).addTo(map);
+                
+                const popupContent = `
+                    <div style="color: #000; font-family: Arial, sans-serif; min-width: 200px;">
+                        <h3 style="margin: 0 0 8px 0; color: #ff0000; font-size: 18px; font-weight: bold;">${pizza.name}</h3>
+                        <p style="margin: 4px 0; font-size: 14px;"><strong>Style:</strong> ${pizza.style}</p>
+                        <p style="margin: 4px 0; font-size: 14px;"><strong>Score:</strong> <span style="background: #ff0000; color: #fff; padding: 2px 8px; border-radius: 12px; font-weight: bold;">${pizza.score}</span> ${pizza.score >= 7.5 ? '👑' : ''}</p>
+                    </div>
+                `;
+                
+                marker.bindPopup(popupContent);
+            });
+        </script>
 
         <section id="pizza-types">
             <h2>Pizza Types Guide</h2>
