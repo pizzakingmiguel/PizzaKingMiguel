@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pizza King Miguel - </title>
-    <style>
+    <title>Pizza King Miguel - Honest Pizza Reviews</title>
+            <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -14,38 +16,82 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: #fafafa;
+            color: #ffffff;
+            background: #000000;
         }
 
         header {
-            background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);
+            background: #000000;
             color: white;
             padding: 2rem 0;
             text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .logo-container {
-            max-width: 200px;
-            margin: 0 auto 1rem;
-        }
-
-        .logo-container img {
-            width: 100%;
-            height: auto;
+            border-bottom: 4px solid #ff0000;
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4.5rem;
             margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            color: #ffffff;
+            font-weight: 400;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 0px #ff0000;
         }
 
         .tagline {
             font-size: 1.2rem;
             font-style: italic;
-            color: #ffd54f;
+            color: #ffffff;
+        }
+
+        .hero-section {
+            background: #000000;
+            padding: 3rem 1rem;
+            border-bottom: 2px solid #ff0000;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-image {
+            width: 100%;
+            border-radius: 12px;
+            border: 3px solid #ff0000;
+            box-shadow: 0 8px 24px rgba(255, 0, 0, 0.3);
+        }
+
+        .hero-text {
+            color: #ffffff;
+        }
+
+        .hero-text h2 {
+            color: #ff0000;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            border: none;
+            padding: 0;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
         }
 
         nav {
@@ -54,7 +100,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            border-bottom: 2px solid #ff0000;
         }
 
         nav ul {
@@ -78,7 +124,7 @@
         }
 
         nav a:hover {
-            color: #ffd54f;
+            color: #ff0000;
         }
 
         .container {
@@ -88,31 +134,31 @@
         }
 
         section {
-            background: white;
+            background: #1a1a1a;
             margin: 2rem 0;
             padding: 2rem;
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 2px solid #333;
         }
 
         h2 {
-            color: #d32f2f;
+            color: #ff0000;
             margin-bottom: 1rem;
             font-size: 2rem;
-            border-bottom: 3px solid #ffd54f;
+            border-bottom: 3px solid #ff0000;
             padding-bottom: 0.5rem;
+            text-transform: uppercase;
+            font-weight: 900;
         }
 
         .about-content {
             display: grid;
             gap: 1.5rem;
+            color: #ffffff;
         }
 
-        .philosophy-box {
-            background: #fff3e0;
-            padding: 1.5rem;
-            border-left: 4px solid #d32f2f;
-            border-radius: 4px;
+        .about-content p {
+            line-height: 1.8;
         }
 
         .ranking-system {
@@ -121,21 +167,28 @@
         }
 
         .score-explanation {
-            background: #f5f5f5;
+            background: #0a0a0a;
             padding: 1.5rem;
             border-radius: 8px;
+            border: 1px solid #333;
+            color: #ffffff;
+        }
+
+        .score-explanation p {
+            margin: 0.5rem 0;
         }
 
         .knighted-badge {
-            background: linear-gradient(135deg, #ffd54f 0%, #ffb300 100%);
-            color: #1a1a1a;
+            background: #ff0000;
+            color: #000000;
             padding: 1.5rem;
             border-radius: 8px;
             text-align: center;
-            font-weight: bold;
+            font-weight: 900;
             font-size: 1.2rem;
             margin: 1rem 0;
-            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .pizza-types {
@@ -144,55 +197,42 @@
         }
 
         .pizza-type {
-            background: #f5f5f5;
+            background: #0a0a0a;
             padding: 1.5rem;
             border-radius: 8px;
-            border-left: 4px solid #d32f2f;
+            border-left: 4px solid #ff0000;
+            color: #ffffff;
         }
 
         .pizza-type h3 {
-            color: #d32f2f;
+            color: #ff0000;
             margin-bottom: 0.5rem;
-        }
-
-        .map-container {
-            background: #e0e0e0;
-            padding: 3rem;
-            text-align: center;
-            border-radius: 8px;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .map-placeholder {
-            color: #666;
-            font-size: 1.1rem;
+            font-weight: 700;
         }
 
         .merch-section {
             text-align: center;
+            color: #ffffff;
         }
 
         .merch-button {
             display: inline-block;
-            background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);
-            color: white;
+            background: #ff0000;
+            color: #000000;
             padding: 1rem 2rem;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: bold;
+            font-weight: 900;
             font-size: 1.1rem;
             margin-top: 1rem;
             transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .merch-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(211, 47, 47, 0.6);
+            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.5);
         }
 
         .social-links {
@@ -203,26 +243,28 @@
         }
 
         .social-link {
-            background: #1a1a1a;
-            color: white;
+            background: #ff0000;
+            color: #000000;
             padding: 1rem 2rem;
             text-decoration: none;
             border-radius: 8px;
-            font-weight: bold;
+            font-weight: 900;
             transition: transform 0.3s, background 0.3s;
+            text-transform: uppercase;
         }
 
         .social-link:hover {
             transform: translateY(-2px);
-            background: #d32f2f;
+            background: #cc0000;
         }
 
         footer {
-            background: #1a1a1a;
+            background: #000000;
             color: white;
             text-align: center;
             padding: 2rem 0;
             margin-top: 3rem;
+            border-top: 4px solid #ff0000;
         }
 
         .sample-rankings {
@@ -232,26 +274,27 @@
         }
 
         .ranking-item {
-            background: white;
+            background: #0a0a0a;
             padding: 1rem;
             border-radius: 8px;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #333;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            color: #ffffff;
         }
 
         .ranking-score {
-            background: #d32f2f;
-            color: white;
+            background: #ff0000;
+            color: #000000;
             padding: 0.5rem 1rem;
             border-radius: 50px;
-            font-weight: bold;
+            font-weight: 900;
             font-size: 1.2rem;
         }
 
         .knighted-icon {
-            color: #ffd54f;
+            color: #ff0000;
             font-size: 1.5rem;
             margin-left: 0.5rem;
         }
@@ -279,12 +322,20 @@
 </head>
 <body>
     <header>
-        <div class="logo-container">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='90' fill='%23ffd54f'/%3E%3Ctext x='100' y='120' font-size='80' text-anchor='middle' fill='%23d32f2f' font-weight='bold'%3E👑%3C/text%3E%3C/svg%3E" alt="Pizza King Logo">
-        </div>
-        <h1>PIZZA KING</h1>
+        <h1>PIZZA KING MIGUEL</h1>
         <p class="tagline">Finding the best pizza NY → CA → 🌍</p>
     </header>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <img src="hero-pizza.jpg" alt="Miguel with pizzas" class="hero-image">
+            <div class="hero-text">
+                <h2>The Pizza King</h2>
+                <p>Years of eating, traveling, and forming opinions about what makes great pizza—from classic New York slices to Neapolitan masterpieces across the globe.</p>
+                <p>This isn't about hype or trends. It's about perspective, consistency, and understanding what makes a pizza truly great.</p>
+            </div>
+        </div>
+    </section>
 
     <nav>
         <ul>
@@ -315,14 +366,14 @@
                 <a href="https://www.instagram.com/pizzakingmiguel?igsh=NTc4MTIwNjQ2YQ%3D%3D&utm_source=qr" target="_blank" class="social-link">Instagram</a>
                 <a href="https://yelp.to/Cx9kvE0ifY" target="_blank" class="social-link">Yelp</a>
             </div>
-            <p style="text-align: center; margin-top: 1.5rem; color: #666;">Daily posts. Honest reviews. No hype.</p>
+            <p style="text-align: center; margin-top: 1.5rem; color: #999;">Daily posts. Honest reviews. No hype.</p>
         </section>
 
         <section id="rankings">
             <h2>The Ranking System</h2>
             <div class="ranking-system">
                 <div class="score-explanation">
-                    <h3>How I Score Pizza (1-10 Scale)</h3>
+                    <h3 style="color: #ff0000; margin-bottom: 1rem;">How I Score Pizza (1-10 Scale)</h3>
                     <p><strong>9.0-10.0:</strong> Exceptional. World-class pizza that sets the standard.</p>
                     <p><strong>8.0-8.9:</strong> Outstanding. Excellent execution, worth traveling for.</p>
                     <p><strong>7.5-7.9:</strong> Very Good. Solid pizza that earns respect.</p>
@@ -338,10 +389,9 @@
                 </div>
 
                 <div class="sample-rankings">
-                    <h3>Top Rated Pizzas</h3>
-                    <p style="color: #666; font-style: italic;">Rankings will be added as reviews are published. Check back soon or follow on social media for the latest reviews.</p>
+                    <h3 style="color: #ff0000;">Top Rated Pizzas</h3>
+                    <p style="color: #999; font-style: italic;">Rankings will be added as reviews are published. Check back soon or follow on social media for the latest reviews.</p>
                     
-                    <!-- Sample structure for when you add rankings -->
                     <div class="ranking-item" style="opacity: 0.3;">
                         <div>
                             <strong>Example Pizza Place</strong>
@@ -396,7 +446,7 @@
             <div class="merch-section">
                 <p>Rep the Pizza King with official hats and gear.</p>
                 <a href="https://pizzakingmerch.etsy.com" target="_blank" class="merch-button">Shop Pizza King Hats on Etsy</a>
-                <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">More items coming soon.</p>
+                <p style="margin-top: 1rem; color: #999; font-size: 0.9rem;">More items coming soon.</p>
             </div>
         </section>
     </div>
