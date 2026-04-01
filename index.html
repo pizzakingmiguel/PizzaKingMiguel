@@ -286,10 +286,31 @@
             padding: 1rem;
             border-radius: 8px;
             border: 2px solid #333;
+            color: #ffffff;
+        }
+
+        .ranking-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .ranking-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .ranking-link {
+            color: #ff0000;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .ranking-link:hover {
+            text-decoration: underline;
         }
 
         .ranking-score {
@@ -336,29 +357,29 @@
 
     <nav>
         <ul>
-            <li><a href="#social">Follow</a></li>
             <li><a href="#rankings">Rankings</a></li>
             <li><a href="#map">Map</a></li>
             <li><a href="#pizza-types">Pizza Types</a></li>
             <li><a href="#merch">Merch</a></li>
+            <li><a href="#social">Follow</a></li>
             <li><a href="#about">About</a></li>
         </ul>
     </nav>
 
     <div class="container">
-        <section id="social">
-            <h2>Follow Pizza King</h2>
-            <div class="social-links">
-                <a href="https://www.tiktok.com/@pizzakingmiguel?_r=1&_t=ZT-93K8qSh1d5J" target="_blank" class="social-link">TikTok</a>
-                <a href="https://www.instagram.com/pizzakingmiguel?igsh=NTc4MTIwNjQ2YQ%3D%3D&utm_source=qr" target="_blank" class="social-link">Instagram</a>
-                <a href="https://yelp.to/Cx9kvE0ifY" target="_blank" class="social-link">Yelp</a>
-            </div>
-            <p style="text-align: center; margin-top: 1.5rem; color: #999;">Daily posts. Honest reviews. No hype.</p>
-        </section>
-
         <section id="rankings">
             <h2>The Ranking System</h2>
             <div class="ranking-system">
+                <div class="knighted-badge">
+                    👑 KNIGHTED BY THE PIZZA KING 👑<br>
+                    Any pizza scoring 7.5 or above earns this honor
+                </div>
+
+                <div class="sample-rankings" id="rankings-container">
+                    <h3 style="color: #ff0000;">Top Rated Pizzas</h3>
+                    <p style="color: #999; font-style: italic; margin: 1rem 0;">Loading rankings...</p>
+                </div>
+
                 <div class="score-explanation">
                     <h3 style="color: #ff0000; margin-bottom: 1rem;">How I Score Pizza (1-10 Scale)</h3>
                     <p><strong>9.0-10.0:</strong> Exceptional. World-class pizza that sets the standard.</p>
@@ -369,16 +390,6 @@
                     <p><strong>5.0-5.9:</strong> Mediocre. Forgettable or flawed.</p>
                     <p><strong>Below 5.0:</strong> Poor. Not worth your time or money.</p>
                 </div>
-
-                <div class="knighted-badge">
-                    👑 KNIGHTED BY THE PIZZA KING 👑<br>
-                    Any pizza scoring 7.5 or above earns this honor
-                </div>
-
-                <div class="sample-rankings" id="rankings-container">
-                    <h3 style="color: #ff0000;">Top Rated Pizzas</h3>
-                    <p style="color: #999; font-style: italic; margin: 1rem 0;">Loading rankings...</p>
-                </div>
             </div>
         </section>
 
@@ -387,58 +398,18 @@
             <div id="pizza-map" style="width: 100%; height: 600px; background: #f5f5f5; border-radius: 8px; border: 2px solid #ff0000;"></div>
             <p style="text-align: center; margin-top: 1rem; color: #999; font-size: 0.9rem;">Click markers to see pizza details • Icons represent pizza style</p>
             
-            <div style="margin-top: 1.5rem; padding: 1rem; background: #1a1a1a; border-radius: 8px; border: 1px solid #333;">
+            <div style="margin-top: 1.5rem; padding: 1rem; background: #1a1a1a; border-radius: 8px; border: 1px solid #333;" id="map-legend">
                 <h3 style="color: #ff0000; margin-bottom: 0.5rem; font-size: 1rem;">Map Legend:</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.5rem; font-size: 0.9rem;">
-                    <span>🗽 New York Style</span>
-                    <span>🇮🇹 Neapolitan</span>
-                    <span>🏭 Detroit Style</span>
-                    <span>🌆 Chicago</span>
-                    <span>👨‍🍳 Artisan</span>
-                    <span>🏛️ Roman</span>
-                    <span>👵 Grandma</span>
-                    <span>📏 Thin Crust</span>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.5rem; font-size: 0.9rem;" id="legend-items">
+                    <span>Loading...</span>
                 </div>
             </div>
         </section>
 
         <section id="pizza-types">
             <h2>Pizza Types Guide</h2>
-            <div class="pizza-types">
-                <div class="pizza-type">
-                    <h3>New York Style</h3>
-                    <p>Large, hand-tossed thin crust with a crispy-yet-foldable texture. Typically sold by the slice. The reference point for American pizza. Known for its wide slices, light char, and balance of sauce and cheese.</p>
-                </div>
-
-                <div class="pizza-type">
-                    <h3>Neapolitan</h3>
-                    <p>The original pizza from Naples, Italy. Soft, pillowy crust with a slightly charred, leopard-spotted bottom from a wood-fired oven. Simple ingredients: San Marzano tomatoes, fresh mozzarella, basil, olive oil. Cooked at extremely high heat (800°F+) for 60-90 seconds.</p>
-                </div>
-
-                <div class="pizza-type">
-                    <h3>Detroit Style</h3>
-                    <p>Rectangular, thick-crusted pizza baked in a well-oiled pan, creating a crispy, caramelized cheese edge. Sauce is often applied on top of the cheese. Known for its airy, focaccia-like interior and crunchy exterior.</p>
-                </div>
-
-                <div class="pizza-type">
-                    <h3>Chicago Deep Dish</h3>
-                    <p>A thick, pie-like pizza with a buttery crust that rises up the sides of a deep pan. Layered with cheese, toppings, and chunky tomato sauce on top. More casserole than flatbread—requires a fork and knife.</p>
-                </div>
-
-                <div class="pizza-type">
-                    <h3>Artisan</h3>
-                    <p>Chef-driven pizza focusing on premium ingredients, creative toppings, and elevated technique. Often features seasonal ingredients, house-made components, and unique flavor combinations. Can span multiple styles but emphasizes craft, quality, and culinary innovation over tradition.</p>
-                </div>
-
-                <div class="pizza-type">
-                    <h3>Roman / Al Taglio</h3>
-                    <p>Rectangular pizza baked in large sheets and sold by weight ("al taglio" means "by the cut"). Crispy bottom, light and airy interior, often with creative topping combinations. Designed for grab-and-go eating.</p>
-                </div>
-
-                <div class="pizza-type">
-                    <h3>Grandma Style</h3>
-                    <p>Thin, rectangular pizza cooked in an olive oil-coated pan. Similar to Sicilian but thinner and crispier. Typically topped with mozzarella and sauce, sometimes in reverse order. Homestyle and comforting.</p>
-                </div>
+            <div class="pizza-types" id="pizza-types-container">
+                <p style="color: #999;">Loading pizza styles...</p>
             </div>
         </section>
 
@@ -446,9 +417,19 @@
             <h2>Merch</h2>
             <div class="merch-section">
                 <p>Rep the Pizza King with official hats and gear.</p>
-                <a href="https://pizzakingmerch.etsy.com" target="_blank" class="merch-button">Shop Pizza King Hats on Etsy</a>
+                <a href="https://pizzakingmerch.etsy.com" target="_blank" class="merch-button">Shop Pizza King Merch on Etsy</a>
                 <p style="margin-top: 1rem; color: #999; font-size: 0.9rem;">More items coming soon.</p>
             </div>
+        </section>
+
+        <section id="social">
+            <h2>Follow Pizza King</h2>
+            <div class="social-links">
+                <a href="https://www.tiktok.com/@pizzakingmiguel?_r=1&_t=ZT-93K8qSh1d5J" target="_blank" class="social-link">TikTok</a>
+                <a href="https://www.instagram.com/pizzakingmiguel?igsh=NTc4MTIwNjQ2YQ%3D%3D&utm_source=qr" target="_blank" class="social-link">Instagram</a>
+                <a href="https://yelp.to/Cx9kvE0ifY" target="_blank" class="social-link">Yelp</a>
+            </div>
+            <p style="text-align: center; margin-top: 1.5rem; color: #999;">Daily posts. Honest reviews. No hype.</p>
         </section>
     </div>
 
@@ -480,6 +461,26 @@
         const SHEET_ID = '1UwKJ83i-8mKFW5zLXxOraIf5IOKgQW5XPVes1TlNFPs';
         const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
 
+        // Pizza type descriptions
+        const pizzaTypeDescriptions = {
+            'Neapolitan': 'The original pizza from Naples, Italy. Soft, pillowy crust with a slightly charred, leopard-spotted bottom from a wood-fired oven. Simple ingredients: San Marzano tomatoes, fresh mozzarella, basil, olive oil. Cooked at extremely high heat (800°F+) for 60-90 seconds.',
+            'Detroit-style': 'Rectangular, thick-crusted pizza baked in a well-oiled pan, creating a crispy, caramelized cheese edge. Sauce is often applied on top of the cheese. Known for its airy, focaccia-like interior and crunchy exterior.',
+            'Artisan': 'Chef-driven pizza focusing on premium ingredients, creative toppings, and elevated technique. Often features seasonal ingredients, house-made components, and unique flavor combinations. Can span multiple styles but emphasizes craft, quality, and culinary innovation over tradition.',
+            'Thin Crust': 'Thin, crispy pizza with minimal rise. Emphasizes toppings and sauce over dough, creating a delicate, crunchy texture throughout.'
+        };
+
+        const styleIcons = {
+            'New York': '🗽',
+            'Neapolitan': '🇮🇹',
+            'Detroit-style': '🏭',
+            'Chicago': '🌆',
+            'Artisan': '👨‍🍳',
+            'Roman': '🏛️',
+            'Grandma': '👵',
+            'Thin Crust': '📏',
+            'default': '🍕'
+        };
+
         async function loadPizzaData() {
             try {
                 const response = await fetch(SHEET_URL);
@@ -501,6 +502,7 @@
 
                 displayRankings(pizzas);
                 displayMap(pizzas);
+                displayPizzaTypes(pizzas);
             } catch (error) {
                 console.error('Error loading pizza data:', error);
                 document.getElementById('rankings-container').innerHTML = '<p style="color: #ff0000;">Error loading rankings. Please refresh the page.</p>';
@@ -515,13 +517,19 @@
                 const isKnighted = pizza.score >= 7.5;
                 html += `
                     <div class="ranking-item">
-                        <div>
-                            <strong>${pizza.name}</strong>
-                            <div style="color: #999; font-size: 0.9rem;">${pizza.location} • ${pizza.style}</div>
+                        <div class="ranking-header">
+                            <div>
+                                <strong>${pizza.name}</strong>
+                                <div style="color: #999; font-size: 0.9rem;">${pizza.location} • ${pizza.style}</div>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <span class="ranking-score">${pizza.score.toFixed(1)}</span>
+                                ${isKnighted ? '<span class="knighted-icon">👑</span>' : ''}
+                            </div>
                         </div>
-                        <div style="display: flex; align-items: center;">
-                            <span class="ranking-score">${pizza.score.toFixed(1)}</span>
-                            ${isKnighted ? '<span class="knighted-icon">👑</span>' : ''}
+                        <div class="ranking-links">
+                            ${pizza.website ? `<a href="${pizza.website}" target="_blank" class="ranking-link">🌐 Website</a>` : ''}
+                            ${pizza.instagram ? `<a href="${pizza.instagram}" target="_blank" class="ranking-link">📸 Instagram</a>` : ''}
                         </div>
                     </div>
                 `;
@@ -530,33 +538,63 @@
             container.innerHTML = html;
         }
 
+        function displayPizzaTypes(pizzas) {
+            // Get unique pizza styles from the data
+            const uniqueStyles = [...new Set(pizzas.map(p => p.style))];
+            const container = document.getElementById('pizza-types-container');
+            
+            let html = '';
+            uniqueStyles.forEach(style => {
+                if (pizzaTypeDescriptions[style]) {
+                    html += `
+                        <div class="pizza-type">
+                            <h3>${style}</h3>
+                            <p>${pizzaTypeDescriptions[style]}</p>
+                        </div>
+                    `;
+                }
+            });
+            
+            container.innerHTML = html;
+
+            // Update map legend
+            const legendContainer = document.getElementById('legend-items');
+            let legendHtml = '';
+            uniqueStyles.forEach(style => {
+                const icon = getStyleIcon(style);
+                legendHtml += `<span>${icon} ${style}</span>`;
+            });
+            legendContainer.innerHTML = legendHtml;
+        }
+
+        function getStyleIcon(style) {
+            for (const [key, icon] of Object.entries(styleIcons)) {
+                if (style.toLowerCase().includes(key.toLowerCase())) {
+                    return icon;
+                }
+            }
+            return styleIcons.default;
+        }
+
         function displayMap(pizzas) {
             const map = L.map('pizza-map').setView([34.0522, -118.2437], 11);
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; OpenStreetMap contributors',
-                maxZoom: 19
+            // Use Google Maps-style tiles (more familiar to users)
+            L.tileLayer('https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}', {
+                attribution: '&copy; Google Maps',
+                maxZoom: 20
             }).addTo(map);
 
-            const styleIcons = {
-                'New York': '🗽',
-                'Neapolitan': '🇮🇹',
-                'Detroit-style': '🏭',
-                'Chicago': '🌆',
-                'Artisan': '👨‍🍳',
-                'Roman': '🏛️',
-                'Grandma': '👵',
-                'Thin Crust': '📏',
-                'default': '🍕'
-            };
-
-            function getStyleIcon(style) {
-                for (const [key, icon] of Object.entries(styleIcons)) {
-                    if (style.toLowerCase().includes(key.toLowerCase())) {
-                        return icon;
+            // Try to get user's location
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        map.setView([position.coords.latitude, position.coords.longitude], 11);
+                    },
+                    () => {
+                        // If denied, stay centered on LA
                     }
-                }
-                return styleIcons.default;
+                );
             }
 
             function createMarkerIcon(style) {
