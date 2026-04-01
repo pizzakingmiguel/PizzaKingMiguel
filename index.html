@@ -87,13 +87,6 @@
             color: #3a3a3a;
         }
 
-        @media (max-width: 968px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-            }
-        }
-
         nav {
             background: #0a0a0a;
             padding: 0;
@@ -374,29 +367,246 @@
             border-radius: 2px;
         }
 
+        /* Map Legend */
+        .map-legend {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #fafaf8;
+            border-radius: 2px;
+            border: 1px solid #e8e6e0;
+        }
+
+        .map-legend h3 {
+            color: #c4433c;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legend-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        /* ==================== */
+        /* MOBILE OPTIMIZATIONS */
+        /* ==================== */
+
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .hero-text h2 {
+                font-size: 2.2rem;
+            }
+        }
+
         @media (max-width: 768px) {
             h1 {
-                font-size: 3rem;
-                letter-spacing: 6px;
+                font-size: 2.5rem;
+                letter-spacing: 4px;
+            }
+
+            .tagline {
+                font-size: 0.95rem;
+                letter-spacing: 1px;
+            }
+
+            header {
+                padding: 2.5rem 1rem;
+            }
+
+            /* Mobile nav — horizontal scroll */
+            nav {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+
+            nav::-webkit-scrollbar {
+                display: none;
             }
 
             nav ul {
-                flex-direction: column;
-                align-items: center;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                min-width: max-content;
             }
 
             nav li {
-                width: 100%;
+                flex-shrink: 0;
+            }
+
+            nav a {
+                padding: 1rem 1.2rem;
+                font-size: 0.8rem;
+                letter-spacing: 1.5px;
+                white-space: nowrap;
+            }
+
+            /* Tighter section padding */
+            section {
+                padding: 2rem 1.2rem;
+                margin: 1.5rem 0;
+            }
+
+            .container {
+                padding: 1.5rem 0.5rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+                margin-bottom: 1.2rem;
+            }
+
+            /* Rankings */
+            .ranking-item {
+                padding: 1.2rem;
+            }
+
+            .ranking-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+
+            .ranking-header strong {
+                font-size: 1.15rem;
+            }
+
+            .ranking-score {
+                font-size: 1.1rem;
+                padding: 0.4rem 1rem;
+            }
+
+            .ranking-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .knighted-badge {
+                padding: 1.5rem 1rem;
+                font-size: 1.1rem;
+                letter-spacing: 2px;
+            }
+
+            .score-explanation {
+                padding: 1.5rem;
+            }
+
+            .score-explanation p {
+                font-size: 0.95rem;
+            }
+
+            /* Map */
+            .map-embed {
+                height: 400px;
+            }
+
+            .legend-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.6rem;
+                font-size: 0.9rem;
+            }
+
+            /* Pizza types */
+            .pizza-type {
+                padding: 1.5rem;
+            }
+
+            .pizza-type h3 {
+                font-size: 1.3rem;
+            }
+
+            .pizza-type p {
+                font-size: 0.95rem;
+            }
+
+            /* Social */
+            .social-links {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .social-link {
+                text-align: center;
+                padding: 0.9rem 2rem;
+            }
+
+            /* Merch */
+            .merch-button {
+                padding: 1rem 2rem;
+                font-size: 0.85rem;
+                display: block;
                 text-align: center;
             }
 
-            .social-links {
-                flex-direction: column;
-                align-items: center;
+            /* About / hero */
+            .hero-section {
+                padding: 2.5rem 1rem;
+            }
+
+            .hero-text h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero-text p {
+                font-size: 1rem;
+                line-height: 1.8;
+            }
+
+            /* Footer */
+            footer {
+                padding: 2rem 1rem;
+                margin-top: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+                letter-spacing: 3px;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            section {
+                padding: 1.5rem 1rem;
             }
 
             .map-embed {
-                height: 450px;
+                height: 350px;
+            }
+
+            .legend-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .ranking-header strong {
+                font-size: 1.05rem;
             }
         }
     </style>
@@ -455,6 +665,13 @@
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>
             <p style="text-align: center; margin-top: 1.5rem; color: #666; font-size: 0.95rem;">Click markers to see pizza details and scores</p>
+            
+            <div class="map-legend">
+                <h3>Map Legend</h3>
+                <div class="legend-grid" id="legend-items">
+                    <span style="color: #666;">Loading legend...</span>
+                </div>
+            </div>
         </section>
 
         <section id="pizza-types">
@@ -468,7 +685,7 @@
             <h2>Merch</h2>
             <div class="merch-section">
                 <p>Rep the Pizza King with official hats and gear.</p>
-                <a href="https://pizzakingmerch.etsy.com" target="_blank" class="merch-button">Shop Pizza King Merch on Etsy</a>
+                <a href="https://www.etsy.com/shop/PizzaKingMiguel?ref=dashboard-header" target="_blank" class="merch-button">Shop Pizza King Merch on Etsy</a>
                 <p style="margin-top: 1.5rem; color: #666; font-size: 0.9rem;">More items coming soon.</p>
             </div>
         </section>
@@ -511,15 +728,49 @@
         const SHEET_ID = '1UwKJ83i-8mKFW5zLXxOraIf5IOKgQW5XPVes1TlNFPs';
         const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
 
+        // Icon mapping — keyed by style name (case-insensitive matching)
+        const styleIcons = {
+            'New York':      '🗽',
+            'Neapolitan':    '🇮🇹',
+            'Detroit-style':  '🏭',
+            'Detroit':       '🏭',
+            'Chicago':       '🌆',
+            'Artisan':       '👨‍🍳',
+            'Roman':         '🏛️',
+            'Grandma':       '👵',
+            'Thin Crust':    '📏',
+            'New Haven':     '🥧',
+            'Gluten Free':   '❌🍞',
+            'Gluten-Free':   '❌🍞',
+            'Flatbread':     '➖',
+            'Flat Bread':    '➖'
+        };
+
+        function getStyleIcon(style) {
+            if (styleIcons[style]) return styleIcons[style];
+            const lower = style.toLowerCase();
+            for (const [key, icon] of Object.entries(styleIcons)) {
+                if (lower.includes(key.toLowerCase())) return icon;
+            }
+            return '🍕';
+        }
+
+        // Pizza type descriptions
         const pizzaTypeDescriptions = {
             'Neapolitan': 'The original pizza from Naples, Italy. Soft, pillowy crust with a slightly charred, leopard-spotted bottom from a wood-fired oven. Simple ingredients: San Marzano tomatoes, fresh mozzarella, basil, olive oil. Cooked at extremely high heat (800°F+) for 60-90 seconds.',
             'Detroit-style': 'Rectangular, thick-crusted pizza baked in a well-oiled pan, creating a crispy, caramelized cheese edge. Sauce is often applied on top of the cheese. Known for its airy, focaccia-like interior and crunchy exterior.',
+            'Detroit': 'Rectangular, thick-crusted pizza baked in a well-oiled pan, creating a crispy, caramelized cheese edge. Sauce is often applied on top of the cheese. Known for its airy, focaccia-like interior and crunchy exterior.',
             'Artisan': 'Chef-driven pizza focusing on premium ingredients, creative toppings, and elevated technique. Often features seasonal ingredients, house-made components, and unique flavor combinations. Can span multiple styles but emphasizes craft, quality, and culinary innovation over tradition.',
             'Thin Crust': 'Thin, crispy pizza with minimal rise. Emphasizes toppings and sauce over dough, creating a delicate, crunchy texture throughout.',
             'New York': 'Large, hand-tossed thin crust with a crispy-yet-foldable texture. Typically sold by the slice. The reference point for American pizza. Known for its wide slices, light char, and balance of sauce and cheese.',
             'Chicago': 'A thick, pie-like pizza with a buttery crust that rises up the sides of a deep pan. Layered with cheese, toppings, and chunky tomato sauce on top. More casserole than flatbread.',
             'Roman': 'Rectangular pizza baked in large sheets and sold by weight. Crispy bottom, light and airy interior, often with creative topping combinations. Designed for grab-and-go eating.',
-            'Grandma': 'Thin, rectangular pizza cooked in an olive oil-coated pan. Similar to Sicilian but thinner and crispier. Typically topped with mozzarella and sauce, sometimes in reverse order. Homestyle and comforting.'
+            'Grandma': 'Thin, rectangular pizza cooked in an olive oil-coated pan. Similar to Sicilian but thinner and crispier. Typically topped with mozzarella and sauce, sometimes in reverse order. Homestyle and comforting.',
+            'New Haven': 'Also known as New Haven-style apizza. Thin, charred, oblong crust baked in a coal-fired oven at extreme temperatures. Crispy and slightly chewy with a distinctive smoky flavor. Traditionally served with tomato sauce and a light dusting of pecorino romano — mozzarella is considered a topping, not a default.',
+            'Flatbread': 'A lighter, thinner alternative to traditional pizza, baked on a crispy unleavened or lightly leavened base. Often features creative, upscale toppings with an emphasis on fresh herbs, olive oil, and seasonal ingredients. The crust is typically cracker-like and delicate.',
+            'Flat Bread': 'A lighter, thinner alternative to traditional pizza, baked on a crispy unleavened or lightly leavened base. Often features creative, upscale toppings with an emphasis on fresh herbs, olive oil, and seasonal ingredients. The crust is typically cracker-like and delicate.',
+            'Gluten Free': 'Pizza made with alternative flours such as rice, almond, chickpea, or cauliflower-based crusts. Quality varies widely — the best versions achieve a satisfying crunch and chew without relying on traditional wheat dough. A growing category as more shops invest in dedicated gluten-free preparation.',
+            'Gluten-Free': 'Pizza made with alternative flours such as rice, almond, chickpea, or cauliflower-based crusts. Quality varies widely — the best versions achieve a satisfying crunch and chew without relying on traditional wheat dough. A growing category as more shops invest in dedicated gluten-free preparation.'
         };
 
         async function loadPizzaData() {
@@ -543,6 +794,7 @@
 
                 displayRankings(pizzas);
                 displayPizzaTypes(pizzas);
+                displayLegend(pizzas);
             } catch (error) {
                 console.error('Error loading pizza data:', error);
                 document.getElementById('rankings-container').innerHTML = '<p style="color: #c4433c;">Error loading rankings. Please refresh the page.</p>';
@@ -582,8 +834,13 @@
             const uniqueStyles = [...new Set(pizzas.map(p => p.style))];
             const container = document.getElementById('pizza-types-container');
             
+            // Always include Flatbread and Gluten Free in the guide
+            const allStyles = new Set(uniqueStyles);
+            allStyles.add('Flatbread');
+            allStyles.add('Gluten Free');
+
             let html = '';
-            uniqueStyles.forEach(style => {
+            allStyles.forEach(style => {
                 if (pizzaTypeDescriptions[style]) {
                     html += `
                         <div class="pizza-type">
@@ -595,6 +852,25 @@
             });
             
             container.innerHTML = html || '<p style="color: #666;">No pizza styles found.</p>';
+        }
+
+        function displayLegend(pizzas) {
+            // Only show styles that appear in the rated pizzas
+            const uniqueStyles = [...new Set(pizzas.map(p => p.style))];
+            const container = document.getElementById('legend-items');
+            
+            let html = '';
+            uniqueStyles.forEach(style => {
+                const icon = getStyleIcon(style);
+                html += `
+                    <div class="legend-item">
+                        <span class="legend-icon">${icon}</span>
+                        <span>${style}</span>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html || '<span style="color: #666;">No styles found.</span>';
         }
 
         loadPizzaData();
