@@ -6,7 +6,7 @@
     <title>Pizza King Miguel - Honest Pizza Reviews</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:wght@300;400;600&display=swap');
         
         * {
             margin: 0;
@@ -15,41 +15,42 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #ffffff;
-            background: #000000;
+            font-family: 'Cormorant Garamond', serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: #fafaf8;
         }
 
         header {
-            background: #000000;
+            background: #0a0a0a;
             color: white;
-            padding: 2rem 0;
+            padding: 3.5rem 0;
             text-align: center;
-            border-bottom: 4px solid #ff0000;
+            border-bottom: 1px solid #c4433c;
         }
 
         h1 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 4.5rem;
+            font-size: 5rem;
             margin-bottom: 0.5rem;
             color: #ffffff;
             font-weight: 400;
-            letter-spacing: 8px;
+            letter-spacing: 12px;
             text-transform: uppercase;
-            text-shadow: 3px 3px 0px #ff0000;
         }
 
         .tagline {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-style: italic;
-            color: #ffffff;
+            color: #e8e6e0;
+            font-weight: 300;
+            letter-spacing: 2px;
         }
 
         .hero-section {
-            background: #000000;
-            padding: 3rem 1rem;
-            border-bottom: 2px solid #ff0000;
+            background: #ffffff;
+            padding: 4rem 1rem;
+            border-bottom: 1px solid #e8e6e0;
         }
 
         .hero-content {
@@ -57,53 +58,50 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 4rem;
             align-items: center;
         }
 
         .hero-image {
             width: 100%;
-            border-radius: 12px;
-            border: 3px solid #ff0000;
-            box-shadow: 0 8px 24px rgba(255, 0, 0, 0.3);
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
         .hero-text {
-            color: #ffffff;
+            color: #2a2a2a;
         }
 
         .hero-text h2 {
-            color: #ff0000;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            border: none;
-            padding: 0;
-            text-transform: uppercase;
-            font-weight: 900;
+            color: #c4433c;
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .hero-text p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-bottom: 1rem;
+            font-size: 1.15rem;
+            line-height: 1.9;
+            margin-bottom: 1.2rem;
+            color: #3a3a3a;
         }
 
         @media (max-width: 968px) {
             .hero-content {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 2.5rem;
             }
         }
 
         nav {
-            background: #1a1a1a;
-            padding: 1.5rem 0;
+            background: #0a0a0a;
+            padding: 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 2px solid #ff0000;
-            border-top: none;
-            min-height: 60px;
+            border-bottom: 1px solid #2a2a2a;
         }
 
         nav ul {
@@ -117,196 +115,235 @@
         }
 
         nav li {
-            margin: 0 1.5rem;
+            margin: 0;
             display: inline-block;
         }
 
         nav a {
-            color: #ffffff;
+            color: #e8e6e0;
             text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: color 0.3s;
+            font-weight: 400;
+            font-size: 0.9rem;
+            transition: all 0.3s;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            display: block;
+            padding: 1.2rem 2rem;
+            font-family: 'Bebas Neue', sans-serif;
         }
 
         nav a:hover {
-            color: #ff0000;
+            background: #c4433c;
+            color: #ffffff;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 1rem;
+            padding: 3rem 1rem;
         }
 
         section {
-            background: #1a1a1a;
-            margin: 2rem 0;
-            padding: 2rem;
-            border-radius: 8px;
-            border: 2px solid #333;
+            background: #ffffff;
+            margin: 3rem 0;
+            padding: 3.5rem 3rem;
+            border-radius: 2px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        section:nth-child(even) {
+            background: #fafaf8;
         }
 
         h2 {
-            color: #ff0000;
-            margin-bottom: 1rem;
-            font-size: 2rem;
-            border-bottom: 3px solid #ff0000;
-            padding-bottom: 0.5rem;
-            text-transform: uppercase;
-            font-weight: 900;
+            color: #c4433c;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #e8e6e0;
+            padding-bottom: 1rem;
         }
 
         .about-content {
             display: grid;
             gap: 1.5rem;
-            color: #ffffff;
+            color: #2a2a2a;
         }
 
         .about-content p {
-            line-height: 1.8;
+            line-height: 1.9;
+            font-size: 1.1rem;
         }
 
         .ranking-system {
             display: grid;
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
         .score-explanation {
-            background: #0a0a0a;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid #333;
-            color: #ffffff;
+            background: #fafaf8;
+            padding: 2rem;
+            border-radius: 2px;
+            border-left: 3px solid #c4433c;
+            color: #2a2a2a;
         }
 
         .score-explanation p {
-            margin: 0.5rem 0;
+            margin: 0.8rem 0;
+            font-size: 1.05rem;
         }
 
         .knighted-badge {
-            background: #ff0000;
-            color: #000000;
-            padding: 1.5rem;
-            border-radius: 8px;
+            background: #c4433c;
+            color: #ffffff;
+            padding: 2rem;
+            border-radius: 2px;
             text-align: center;
-            font-weight: 900;
-            font-size: 1.2rem;
-            margin: 1rem 0;
+            font-weight: 600;
+            font-size: 1.3rem;
+            margin: 2rem 0;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 3px;
+            font-family: 'Bebas Neue', sans-serif;
         }
 
         .pizza-types {
             display: grid;
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
         .pizza-type {
-            background: #0a0a0a;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid #ff0000;
-            color: #ffffff;
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 2px;
+            border-left: 3px solid #c4433c;
+            color: #2a2a2a;
         }
 
         .pizza-type h3 {
-            color: #ff0000;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
+            color: #c4433c;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .pizza-type p {
+            font-size: 1.05rem;
+            line-height: 1.8;
         }
 
         .merch-section {
             text-align: center;
-            color: #ffffff;
+            color: #2a2a2a;
+        }
+
+        .merch-section p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
         }
 
         .merch-button {
             display: inline-block;
-            background: #ff0000;
-            color: #000000;
-            padding: 1rem 2rem;
+            background: #0a0a0a;
+            color: #ffffff;
+            padding: 1.2rem 3rem;
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: 900;
-            font-size: 1.1rem;
+            border-radius: 2px;
+            font-weight: 400;
+            font-size: 0.95rem;
             margin-top: 1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 3px;
+            font-family: 'Bebas Neue', sans-serif;
         }
 
         .merch-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.5);
+            background: #c4433c;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
         }
 
         .social-link {
-            background: #ff0000;
-            color: #000000;
-            padding: 1rem 2rem;
+            background: #0a0a0a;
+            color: #ffffff;
+            padding: 1rem 2.5rem;
             text-decoration: none;
-            border-radius: 8px;
-            font-weight: 900;
-            transition: transform 0.3s, background 0.3s;
+            border-radius: 2px;
+            font-weight: 400;
+            transition: all 0.3s;
             text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.9rem;
         }
 
         .social-link:hover {
-            transform: translateY(-2px);
-            background: #cc0000;
+            background: #c4433c;
         }
 
         footer {
-            background: #000000;
-            color: white;
+            background: #0a0a0a;
+            color: #e8e6e0;
             text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
-            border-top: 4px solid #ff0000;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid #2a2a2a;
+        }
+
+        footer p {
+            font-size: 0.95rem;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
         }
 
         .sample-rankings {
             display: grid;
-            gap: 1rem;
-            margin-top: 1.5rem;
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .ranking-item {
-            background: #0a0a0a;
-            padding: 1rem;
-            border-radius: 8px;
-            border: 2px solid #333;
-            color: #ffffff;
+            background: #fafaf8;
+            padding: 1.8rem;
+            border-radius: 2px;
+            border-left: 3px solid #c4433c;
+            color: #2a2a2a;
         }
 
         .ranking-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .ranking-header strong {
+            font-size: 1.3rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
         }
 
         .ranking-links {
             display: flex;
-            gap: 1rem;
-            margin-top: 0.5rem;
+            gap: 1.5rem;
+            margin-top: 0.8rem;
         }
 
         .ranking-link {
-            color: #ff0000;
+            color: #c4433c;
             text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: bold;
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 1px;
         }
 
         .ranking-link:hover {
@@ -314,23 +351,26 @@
         }
 
         .ranking-score {
-            background: #ff0000;
-            color: #000000;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-weight: 900;
-            font-size: 1.2rem;
+            background: #0a0a0a;
+            color: #ffffff;
+            padding: 0.6rem 1.5rem;
+            border-radius: 2px;
+            font-weight: 600;
+            font-size: 1.3rem;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
         }
 
         .knighted-icon {
-            color: #ff0000;
+            color: #c4433c;
             font-size: 1.5rem;
-            margin-left: 0.5rem;
+            margin-left: 0.8rem;
         }
 
         @media (max-width: 768px) {
             h1 {
-                font-size: 2rem;
+                font-size: 3rem;
+                letter-spacing: 6px;
             }
 
             nav ul {
@@ -339,7 +379,8 @@
             }
 
             nav li {
-                margin: 0.5rem 0;
+                width: 100%;
+                text-align: center;
             }
 
             .social-links {
@@ -371,17 +412,17 @@
             <h2>The Ranking System</h2>
             <div class="ranking-system">
                 <div class="knighted-badge">
-                    👑 KNIGHTED BY THE PIZZA KING 👑<br>
-                    Any pizza scoring 7.5 or above earns this honor
+                    👑 Knighted by the Pizza King 👑<br>
+                    <span style="font-size: 0.8rem; letter-spacing: 2px; font-weight: 400;">Any pizza scoring 7.5 or above earns this honor</span>
                 </div>
 
                 <div class="sample-rankings" id="rankings-container">
-                    <h3 style="color: #ff0000;">Top Rated Pizzas</h3>
-                    <p style="color: #999; font-style: italic; margin: 1rem 0;">Loading rankings...</p>
+                    <h3 style="color: #c4433c; font-size: 1.8rem; margin-bottom: 1rem; font-family: 'Cormorant Garamond', serif; font-weight: 600;">Top Rated Pizzas</h3>
+                    <p style="color: #666; font-style: italic; margin: 1rem 0;">Loading rankings...</p>
                 </div>
 
                 <div class="score-explanation">
-                    <h3 style="color: #ff0000; margin-bottom: 1rem;">How I Score Pizza (1-10 Scale)</h3>
+                    <h3 style="color: #c4433c; margin-bottom: 1.5rem; font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.6rem;">How I Score Pizza (1-10 Scale)</h3>
                     <p><strong>9.0-10.0:</strong> Exceptional. World-class pizza that sets the standard.</p>
                     <p><strong>8.0-8.9:</strong> Outstanding. Excellent execution, worth traveling for.</p>
                     <p><strong>7.5-7.9:</strong> Very Good. Solid pizza that earns respect.</p>
@@ -395,12 +436,12 @@
 
         <section id="map">
             <h2>Pizza Map</h2>
-            <div id="pizza-map" style="width: 100%; height: 600px; background: #f5f5f5; border-radius: 8px; border: 2px solid #ff0000;"></div>
-            <p style="text-align: center; margin-top: 1rem; color: #999; font-size: 0.9rem;">Click markers to see pizza details • Icons represent pizza style</p>
+            <div id="pizza-map" style="width: 100%; height: 600px; background: #fafaf8; border-radius: 2px; border: 1px solid #e8e6e0;"></div>
+            <p style="text-align: center; margin-top: 1.5rem; color: #666; font-size: 0.95rem;">Click markers to see pizza details • Icons represent pizza style</p>
             
-            <div style="margin-top: 1.5rem; padding: 1rem; background: #1a1a1a; border-radius: 8px; border: 1px solid #333;" id="map-legend">
-                <h3 style="color: #ff0000; margin-bottom: 0.5rem; font-size: 1rem;">Map Legend:</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.5rem; font-size: 0.9rem;" id="legend-items">
+            <div style="margin-top: 2rem; padding: 1.5rem; background: #fafaf8; border-radius: 2px; border: 1px solid #e8e6e0;" id="map-legend">
+                <h3 style="color: #c4433c; margin-bottom: 1rem; font-size: 1.3rem; font-family: 'Cormorant Garamond', serif; font-weight: 600;">Map Legend:</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.8rem; font-size: 1rem;" id="legend-items">
                     <span>Loading...</span>
                 </div>
             </div>
@@ -409,7 +450,7 @@
         <section id="pizza-types">
             <h2>Pizza Types Guide</h2>
             <div class="pizza-types" id="pizza-types-container">
-                <p style="color: #999;">Loading pizza styles...</p>
+                <p style="color: #666;">Loading pizza styles...</p>
             </div>
         </section>
 
@@ -418,7 +459,7 @@
             <div class="merch-section">
                 <p>Rep the Pizza King with official hats and gear.</p>
                 <a href="https://pizzakingmerch.etsy.com" target="_blank" class="merch-button">Shop Pizza King Merch on Etsy</a>
-                <p style="margin-top: 1rem; color: #999; font-size: 0.9rem;">More items coming soon.</p>
+                <p style="margin-top: 1.5rem; color: #666; font-size: 0.9rem;">More items coming soon.</p>
             </div>
         </section>
 
@@ -429,7 +470,7 @@
                 <a href="https://www.instagram.com/pizzakingmiguel?igsh=NTc4MTIwNjQ2YQ%3D%3D&utm_source=qr" target="_blank" class="social-link">Instagram</a>
                 <a href="https://yelp.to/Cx9kvE0ifY" target="_blank" class="social-link">Yelp</a>
             </div>
-            <p style="text-align: center; margin-top: 1.5rem; color: #999;">Daily posts. Honest reviews. No hype.</p>
+            <p style="text-align: center; margin-top: 2rem; color: #666; font-size: 1rem;">Daily posts. Honest reviews. No hype.</p>
         </section>
     </div>
 
@@ -453,7 +494,7 @@
 
     <footer>
         <p>&copy; 2026 Pizza King. All rights reserved.</p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Built with consistency, patience, and a whole lot of pizza.</p>
+        <p style="margin-top: 0.8rem;">Built with consistency, patience, and a whole lot of pizza.</p>
     </footer>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -461,7 +502,6 @@
         const SHEET_ID = '1UwKJ83i-8mKFW5zLXxOraIf5IOKgQW5XPVes1TlNFPs';
         const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
 
-        // Pizza type descriptions
         const pizzaTypeDescriptions = {
             'Neapolitan': 'The original pizza from Naples, Italy. Soft, pillowy crust with a slightly charred, leopard-spotted bottom from a wood-fired oven. Simple ingredients: San Marzano tomatoes, fresh mozzarella, basil, olive oil. Cooked at extremely high heat (800°F+) for 60-90 seconds.',
             'Detroit-style': 'Rectangular, thick-crusted pizza baked in a well-oiled pan, creating a crispy, caramelized cheese edge. Sauce is often applied on top of the cheese. Known for its airy, focaccia-like interior and crunchy exterior.',
@@ -505,13 +545,13 @@
                 displayPizzaTypes(pizzas);
             } catch (error) {
                 console.error('Error loading pizza data:', error);
-                document.getElementById('rankings-container').innerHTML = '<p style="color: #ff0000;">Error loading rankings. Please refresh the page.</p>';
+                document.getElementById('rankings-container').innerHTML = '<p style="color: #c4433c;">Error loading rankings. Please refresh the page.</p>';
             }
         }
 
         function displayRankings(pizzas) {
             const container = document.getElementById('rankings-container');
-            let html = '<h3 style="color: #ff0000;">Top Rated Pizzas</h3>';
+            let html = '<h3 style="color: #c4433c; font-size: 1.8rem; margin-bottom: 1rem; font-family: \'Cormorant Garamond\', serif; font-weight: 600;">Top Rated Pizzas</h3>';
             
             pizzas.forEach(pizza => {
                 const isKnighted = pizza.score >= 7.5;
@@ -520,7 +560,7 @@
                         <div class="ranking-header">
                             <div>
                                 <strong>${pizza.name}</strong>
-                                <div style="color: #999; font-size: 0.9rem;">${pizza.location} • ${pizza.style}</div>
+                                <div style="color: #666; font-size: 0.95rem; margin-top: 0.3rem;">${pizza.location} • ${pizza.style}</div>
                             </div>
                             <div style="display: flex; align-items: center;">
                                 <span class="ranking-score">${pizza.score.toFixed(1)}</span>
@@ -539,7 +579,6 @@
         }
 
         function displayPizzaTypes(pizzas) {
-            // Get unique pizza styles from the data
             const uniqueStyles = [...new Set(pizzas.map(p => p.style))];
             const container = document.getElementById('pizza-types-container');
             
@@ -557,7 +596,6 @@
             
             container.innerHTML = html;
 
-            // Update map legend
             const legendContainer = document.getElementById('legend-items');
             let legendHtml = '';
             uniqueStyles.forEach(style => {
@@ -579,21 +617,17 @@
         function displayMap(pizzas) {
             const map = L.map('pizza-map').setView([34.0522, -118.2437], 11);
 
-            // Use Google Maps-style tiles (more familiar to users)
             L.tileLayer('https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}', {
                 attribution: '&copy; Google Maps',
                 maxZoom: 20
             }).addTo(map);
 
-            // Try to get user's location
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
                         map.setView([position.coords.latitude, position.coords.longitude], 11);
                     },
-                    () => {
-                        // If denied, stay centered on LA
-                    }
+                    () => {}
                 );
             }
 
@@ -601,7 +635,7 @@
                 const emoji = getStyleIcon(style);
                 return L.divIcon({
                     className: 'custom-marker',
-                    html: `<div style="background: #ff0000; width: 36px; height: 36px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; font-size: 20px;">${emoji}</div>`,
+                    html: `<div style="background: #c4433c; width: 36px; height: 36px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; font-size: 20px;">${emoji}</div>`,
                     iconSize: [36, 36],
                     iconAnchor: [18, 18]
                 });
@@ -621,18 +655,18 @@
                             
                             const isKnighted = pizza.score >= 7.5;
                             let popupContent = `
-                                <div style="color: #000; font-family: Arial, sans-serif; min-width: 220px;">
-                                    <h3 style="margin: 0 0 8px 0; color: #ff0000; font-size: 18px; font-weight: bold;">${pizza.name}</h3>
-                                    <p style="margin: 4px 0; font-size: 14px;"><strong>Style:</strong> ${pizza.style}</p>
-                                    <p style="margin: 4px 0; font-size: 14px;"><strong>Score:</strong> <span style="background: #ff0000; color: #fff; padding: 2px 8px; border-radius: 12px; font-weight: bold;">${pizza.score.toFixed(1)}</span> ${isKnighted ? '👑' : ''}</p>
+                                <div style="color: #1a1a1a; font-family: 'Cormorant Garamond', serif; min-width: 220px;">
+                                    <h3 style="margin: 0 0 10px 0; color: #c4433c; font-size: 1.4rem; font-weight: 600;">${pizza.name}</h3>
+                                    <p style="margin: 6px 0; font-size: 1rem;"><strong>Style:</strong> ${pizza.style}</p>
+                                    <p style="margin: 6px 0; font-size: 1rem;"><strong>Score:</strong> <span style="background: #0a0a0a; color: #fff; padding: 3px 10px; border-radius: 2px; font-weight: 600; font-family: 'Bebas Neue', sans-serif; letter-spacing: 1px;">${pizza.score.toFixed(1)}</span> ${isKnighted ? '👑' : ''}</p>
                             `;
                             
                             if (pizza.website) {
-                                popupContent += `<p style="margin: 8px 0 4px 0;"><a href="${pizza.website}" target="_blank" style="color: #ff0000; text-decoration: none; font-weight: bold;">🌐 Visit Website</a></p>`;
+                                popupContent += `<p style="margin: 10px 0 4px 0;"><a href="${pizza.website}" target="_blank" style="color: #c4433c; text-decoration: none; font-weight: 600;">🌐 Visit Website</a></p>`;
                             }
                             
                             if (pizza.instagram) {
-                                popupContent += `<p style="margin: 4px 0;"><a href="${pizza.instagram}" target="_blank" style="color: #ff0000; text-decoration: none; font-weight: bold;">📸 View on @PizzaKingMiguel IG</a></p>`;
+                                popupContent += `<p style="margin: 4px 0;"><a href="${pizza.instagram}" target="_blank" style="color: #c4433c; text-decoration: none; font-weight: 600;">📸 View on @PizzaKingMiguel IG</a></p>`;
                             }
                             
                             popupContent += '</div>';
