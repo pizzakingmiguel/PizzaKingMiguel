@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pizza King Miguel - Honest Pizza Reviews</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:wght@300;400;600&display=swap');
         
@@ -367,6 +366,14 @@
             margin-left: 0.8rem;
         }
 
+        /* Google My Maps embed */
+        .map-embed {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #e8e6e0;
+            border-radius: 2px;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 3rem;
@@ -386,6 +393,10 @@
             .social-links {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .map-embed {
+                height: 450px;
             }
         }
     </style>
@@ -436,15 +447,14 @@
 
         <section id="map">
             <h2>Pizza Map</h2>
-            <div id="pizza-map" style="width: 100%; height: 600px; background: #fafaf8; border-radius: 2px; border: 1px solid #e8e6e0;"></div>
-            <p style="text-align: center; margin-top: 1.5rem; color: #666; font-size: 0.95rem;">Click markers to see pizza details • Icons represent pizza style</p>
-            
-            <div style="margin-top: 2rem; padding: 1.5rem; background: #fafaf8; border-radius: 2px; border: 1px solid #e8e6e0;" id="map-legend">
-                <h3 style="color: #c4433c; margin-bottom: 1rem; font-size: 1.3rem; font-family: 'Cormorant Garamond', serif; font-weight: 600;">Map Legend:</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.8rem; font-size: 1rem;" id="legend-items">
-                    <span>Loading...</span>
-                </div>
-            </div>
+            <iframe 
+                src="https://www.google.com/maps/d/u/0/embed?mid=1z72aWBgvOd9EBZekwf-UJne1YE8wK34&ll=35.2908299374155%2C0&z=2" 
+                class="map-embed"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            <p style="text-align: center; margin-top: 1.5rem; color: #666; font-size: 0.95rem;">Click markers to see pizza details and scores</p>
         </section>
 
         <section id="pizza-types">
@@ -497,7 +507,6 @@
         <p style="margin-top: 0.8rem;">Built with consistency, patience, and a whole lot of pizza.</p>
     </footer>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         const SHEET_ID = '1UwKJ83i-8mKFW5zLXxOraIf5IOKgQW5XPVes1TlNFPs';
         const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
@@ -506,19 +515,11 @@
             'Neapolitan': 'The original pizza from Naples, Italy. Soft, pillowy crust with a slightly charred, leopard-spotted bottom from a wood-fired oven. Simple ingredients: San Marzano tomatoes, fresh mozzarella, basil, olive oil. Cooked at extremely high heat (800°F+) for 60-90 seconds.',
             'Detroit-style': 'Rectangular, thick-crusted pizza baked in a well-oiled pan, creating a crispy, caramelized cheese edge. Sauce is often applied on top of the cheese. Known for its airy, focaccia-like interior and crunchy exterior.',
             'Artisan': 'Chef-driven pizza focusing on premium ingredients, creative toppings, and elevated technique. Often features seasonal ingredients, house-made components, and unique flavor combinations. Can span multiple styles but emphasizes craft, quality, and culinary innovation over tradition.',
-            'Thin Crust': 'Thin, crispy pizza with minimal rise. Emphasizes toppings and sauce over dough, creating a delicate, crunchy texture throughout.'
-        };
-
-        const styleIcons = {
-            'New York': '🗽',
-            'Neapolitan': '🇮🇹',
-            'Detroit-style': '🏭',
-            'Chicago': '🌆',
-            'Artisan': '👨‍🍳',
-            'Roman': '🏛️',
-            'Grandma': '👵',
-            'Thin Crust': '📏',
-            'default': '🍕'
+            'Thin Crust': 'Thin, crispy pizza with minimal rise. Emphasizes toppings and sauce over dough, creating a delicate, crunchy texture throughout.',
+            'New York': 'Large, hand-tossed thin crust with a crispy-yet-foldable texture. Typically sold by the slice. The reference point for American pizza. Known for its wide slices, light char, and balance of sauce and cheese.',
+            'Chicago': 'A thick, pie-like pizza with a buttery crust that rises up the sides of a deep pan. Layered with cheese, toppings, and chunky tomato sauce on top. More casserole than flatbread.',
+            'Roman': 'Rectangular pizza baked in large sheets and sold by weight. Crispy bottom, light and airy interior, often with creative topping combinations. Designed for grab-and-go eating.',
+            'Grandma': 'Thin, rectangular pizza cooked in an olive oil-coated pan. Similar to Sicilian but thinner and crispier. Typically topped with mozzarella and sauce, sometimes in reverse order. Homestyle and comforting.'
         };
 
         async function loadPizzaData() {
@@ -541,7 +542,6 @@
                 pizzas.sort((a, b) => b.score - a.score);
 
                 displayRankings(pizzas);
-                displayMap(pizzas);
                 displayPizzaTypes(pizzas);
             } catch (error) {
                 console.error('Error loading pizza data:', error);
@@ -594,90 +594,7 @@
                 }
             });
             
-            container.innerHTML = html;
-
-            const legendContainer = document.getElementById('legend-items');
-            let legendHtml = '';
-            uniqueStyles.forEach(style => {
-                const icon = getStyleIcon(style);
-                legendHtml += `<span>${icon} ${style}</span>`;
-            });
-            legendContainer.innerHTML = legendHtml;
-        }
-
-        function getStyleIcon(style) {
-            for (const [key, icon] of Object.entries(styleIcons)) {
-                if (style.toLowerCase().includes(key.toLowerCase())) {
-                    return icon;
-                }
-            }
-            return styleIcons.default;
-        }
-
-        function displayMap(pizzas) {
-            const map = L.map('pizza-map').setView([34.0522, -118.2437], 11);
-
-            L.tileLayer('https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}', {
-                attribution: '&copy; Google Maps',
-                maxZoom: 20
-            }).addTo(map);
-
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        map.setView([position.coords.latitude, position.coords.longitude], 11);
-                    },
-                    () => {}
-                );
-            }
-
-            function createMarkerIcon(style) {
-                const emoji = getStyleIcon(style);
-                return L.divIcon({
-                    className: 'custom-marker',
-                    html: `<div style="background: #c4433c; width: 36px; height: 36px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; font-size: 20px;">${emoji}</div>`,
-                    iconSize: [36, 36],
-                    iconAnchor: [18, 18]
-                });
-            }
-
-            pizzas.forEach(async pizza => {
-                if (pizza.address) {
-                    try {
-                        const geoResponse = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(pizza.address)}`);
-                        const geoData = await geoResponse.json();
-                        
-                        if (geoData && geoData[0]) {
-                            const lat = parseFloat(geoData[0].lat);
-                            const lng = parseFloat(geoData[0].lon);
-                            
-                            const marker = L.marker([lat, lng], { icon: createMarkerIcon(pizza.style) }).addTo(map);
-                            
-                            const isKnighted = pizza.score >= 7.5;
-                            let popupContent = `
-                                <div style="color: #1a1a1a; font-family: 'Cormorant Garamond', serif; min-width: 220px;">
-                                    <h3 style="margin: 0 0 10px 0; color: #c4433c; font-size: 1.4rem; font-weight: 600;">${pizza.name}</h3>
-                                    <p style="margin: 6px 0; font-size: 1rem;"><strong>Style:</strong> ${pizza.style}</p>
-                                    <p style="margin: 6px 0; font-size: 1rem;"><strong>Score:</strong> <span style="background: #0a0a0a; color: #fff; padding: 3px 10px; border-radius: 2px; font-weight: 600; font-family: 'Bebas Neue', sans-serif; letter-spacing: 1px;">${pizza.score.toFixed(1)}</span> ${isKnighted ? '👑' : ''}</p>
-                            `;
-                            
-                            if (pizza.website) {
-                                popupContent += `<p style="margin: 10px 0 4px 0;"><a href="${pizza.website}" target="_blank" style="color: #c4433c; text-decoration: none; font-weight: 600;">🌐 Visit Website</a></p>`;
-                            }
-                            
-                            if (pizza.instagram) {
-                                popupContent += `<p style="margin: 4px 0;"><a href="${pizza.instagram}" target="_blank" style="color: #c4433c; text-decoration: none; font-weight: 600;">📸 View on @PizzaKingMiguel IG</a></p>`;
-                            }
-                            
-                            popupContent += '</div>';
-                            
-                            marker.bindPopup(popupContent);
-                        }
-                    } catch (error) {
-                        console.error(`Error geocoding ${pizza.name}:`, error);
-                    }
-                }
-            });
+            container.innerHTML = html || '<p style="color: #666;">No pizza styles found.</p>';
         }
 
         loadPizzaData();
