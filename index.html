@@ -414,18 +414,6 @@
             border-radius: 2px;
         }
 
-        /* Instagram embed in rankings */
-        .ranking-ig-embed {
-            margin-top: 1rem;
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .ranking-ig-embed iframe {
-            border: none !important;
-            max-width: 100%;
-        }
-
         /* ==================== */
         /* MOBILE OPTIMIZATIONS */
         /* ==================== */
@@ -789,29 +777,6 @@
             pizzas.forEach(pizza => {
                 const isKnighted = pizza.score >= 7.5;
 
-                // Extract Instagram post ID for embed if instagram link is a post URL
-                let igEmbed = '';
-                if (pizza.instagram) {
-                    // Instagram post URLs contain /p/ or /reel/
-                    const igPostMatch = pizza.instagram.match(/instagram\.com\/(p|reel)\/([A-Za-z0-9_-]+)/);
-                    if (igPostMatch) {
-                        const postUrl = `https://www.instagram.com/${igPostMatch[1]}/${igPostMatch[2]}/`;
-                        igEmbed = `
-                            <div class="ranking-ig-embed">
-                                <iframe 
-                                    src="${postUrl}embed/" 
-                                    width="100%" 
-                                    height="480" 
-                                    frameborder="0" 
-                                    scrolling="no" 
-                                    allowtransparency="true"
-                                    loading="lazy">
-                                </iframe>
-                            </div>
-                        `;
-                    }
-                }
-
                 html += `
                     <div class="ranking-item">
                         <div class="ranking-header">
@@ -828,7 +793,6 @@
                             ${pizza.website ? `<a href="${pizza.website}" target="_blank" class="ranking-link">🌐 Website</a>` : ''}
                             ${pizza.instagram ? `<a href="${pizza.instagram}" target="_blank" class="ranking-link">📸 Instagram</a>` : ''}
                         </div>
-                        ${igEmbed}
                     </div>
                 `;
             });
