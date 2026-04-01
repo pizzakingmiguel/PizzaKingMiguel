@@ -158,17 +158,6 @@
             padding-bottom: 1rem;
         }
 
-        .about-content {
-            display: grid;
-            gap: 1.5rem;
-            color: #2a2a2a;
-        }
-
-        .about-content p {
-            line-height: 1.9;
-            font-size: 1.1rem;
-        }
-
         .ranking-system {
             display: grid;
             gap: 2rem;
@@ -225,6 +214,64 @@
         .pizza-type p {
             font-size: 1.05rem;
             line-height: 1.8;
+        }
+
+        /* Ranked pizzas list under each pizza type */
+        .type-ranked-list {
+            margin-top: 1.2rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e8e6e0;
+        }
+
+        .type-ranked-list h4 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 0.8rem;
+            font-weight: 400;
+        }
+
+        .type-ranked-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0eeea;
+            font-size: 1rem;
+        }
+
+        .type-ranked-item:last-child {
+            border-bottom: none;
+        }
+
+        .type-ranked-name {
+            color: #2a2a2a;
+            font-weight: 600;
+        }
+
+        .type-ranked-location {
+            color: #999;
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+            font-weight: 300;
+        }
+
+        .type-ranked-score {
+            background: #0a0a0a;
+            color: #fff;
+            padding: 0.2rem 0.7rem;
+            border-radius: 2px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+
+        .type-ranked-score.knighted {
+            background: #c4433c;
         }
 
         .merch-section {
@@ -367,44 +414,16 @@
             border-radius: 2px;
         }
 
-        /* Map Legend */
-        .map-legend {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: #fafaf8;
+        /* Instagram embed in rankings */
+        .ranking-ig-embed {
+            margin-top: 1rem;
             border-radius: 2px;
-            border: 1px solid #e8e6e0;
+            overflow: hidden;
         }
 
-        .map-legend h3 {
-            color: #c4433c;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
-        }
-
-        .legend-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 0.8rem;
-            font-size: 1rem;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .legend-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 28px;
-            height: 28px;
-            font-size: 1.1rem;
-            flex-shrink: 0;
+        .ranking-ig-embed iframe {
+            border: none !important;
+            max-width: 100%;
         }
 
         /* ==================== */
@@ -524,12 +543,6 @@
                 height: 400px;
             }
 
-            .legend-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.6rem;
-                font-size: 0.9rem;
-            }
-
             /* Pizza types */
             .pizza-type {
                 padding: 1.5rem;
@@ -541,6 +554,10 @@
 
             .pizza-type p {
                 font-size: 0.95rem;
+            }
+
+            .type-ranked-item {
+                font-size: 0.9rem;
             }
 
             /* Social */
@@ -601,12 +618,18 @@
                 height: 350px;
             }
 
-            .legend-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
             .ranking-header strong {
                 font-size: 1.05rem;
+            }
+
+            .type-ranked-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.3rem;
+            }
+
+            .type-ranked-score {
+                margin-left: 0;
             }
         }
     </style>
@@ -614,16 +637,16 @@
 <body>
     <header>
         <h1>PIZZA KING MIGUEL</h1>
-        <p class="tagline"A Guide to the Best Pizza, One Slice at a Time</p>
+        <p class="tagline">Finding the best pizza, one slice at a time</p>
     </header>
 
     <nav>
         <ul>
-            <li><a href="#rankings">Rankings</a></li>
-            <li><a href="#map">Map</a></li>
+            <li><a href="#rankings">Find the Best Pizza</a></li>
+            <li><a href="#map">Explore the Map</a></li>
             <li><a href="#pizza-types">Pizza Types</a></li>
-            <li><a href="#merch">Merch</a></li>
-            <li><a href="#social">Follow</a></li>
+            <li><a href="#merch">Pizza King Shop</a></li>
+            <li><a href="#social">Follow the Journey</a></li>
             <li><a href="#about">About</a></li>
         </ul>
     </nav>
@@ -656,7 +679,7 @@
         </section>
 
         <section id="map">
-            <h2>Pizza Map</h2>
+            <h2>Explore the Map</h2>
             <iframe 
                 src="https://www.google.com/maps/d/u/0/embed?mid=1z72aWBgvOd9EBZekwf-UJne1YE8wK34&ll=35.2908299374155%2C0&z=2" 
                 class="map-embed"
@@ -665,13 +688,6 @@
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>
             <p style="text-align: center; margin-top: 1.5rem; color: #666; font-size: 0.95rem;">Click markers to see pizza details and scores</p>
-            
-            <div class="map-legend">
-                <h3>Map Legend</h3>
-                <div class="legend-grid" id="legend-items">
-                    <span style="color: #666;">Loading legend...</span>
-                </div>
-            </div>
         </section>
 
         <section id="pizza-types">
@@ -682,7 +698,7 @@
         </section>
 
         <section id="merch">
-            <h2>Merch</h2>
+            <h2>Pizza King Shop</h2>
             <div class="merch-section">
                 <p>Rep the Pizza King with official hats and gear.</p>
                 <a href="https://www.etsy.com/shop/PizzaKingMiguel?ref=dashboard-header" target="_blank" class="merch-button">Shop Pizza King Merch on Etsy</a>
@@ -691,7 +707,7 @@
         </section>
 
         <section id="social">
-            <h2>Follow Pizza King</h2>
+            <h2>Follow the Journey</h2>
             <div class="social-links">
                 <a href="https://www.tiktok.com/@pizzakingmiguel?_r=1&_t=ZT-93K8qSh1d5J" target="_blank" class="social-link">TikTok</a>
                 <a href="https://www.instagram.com/pizzakingmiguel?igsh=NTc4MTIwNjQ2YQ%3D%3D&utm_source=qr" target="_blank" class="social-link">Instagram</a>
@@ -706,7 +722,7 @@
             <img src="hero-pizza.jpg" alt="Miguel with pizzas" class="hero-image">
             <div class="hero-text">
                 <h2>About Pizza King</h2>
-                <p>I’m Miguel, based in Orange County and previously lived in New Jersey, New York, and Los Angeles, chasing great pizza along the way. What started as a personal passion turned into a system: rate every slice, trust your taste, and share what’s actually worth it.</p>
+                <p>I'm Miguel, based in Orange County and previously lived in New Jersey, New York, and Los Angeles, chasing great pizza along the way. What started as a personal passion turned into a system: rate every slice, trust your taste, and share what's actually worth it.</p>
                 <p><strong>Follow along as I keep eating, traveling, and refining my taste, one slice at a time.</strong></p>
             </div>
         </div>
@@ -720,33 +736,6 @@
     <script>
         const SHEET_ID = '1UwKJ83i-8mKFW5zLXxOraIf5IOKgQW5XPVes1TlNFPs';
         const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
-
-        // Icon mapping — keyed by style name (case-insensitive matching)
-        const styleIcons = {
-            'New York':      '🗽',
-            'Neapolitan':    '🇮🇹',
-            'Detroit-style':  '🏭',
-            'Detroit':       '🏭',
-            'Chicago':       '🌆',
-            'Artisan':       '👨‍🍳',
-            'Roman':         '🏛️',
-            'Grandma':       '👵',
-            'Thin Crust':    '📏',
-            'New Haven':     '🥧',
-            'Gluten Free':   '❌🍞',
-            'Gluten-Free':   '❌🍞',
-            'Flatbread':     '➖',
-            'Flat Bread':    '➖'
-        };
-
-        function getStyleIcon(style) {
-            if (styleIcons[style]) return styleIcons[style];
-            const lower = style.toLowerCase();
-            for (const [key, icon] of Object.entries(styleIcons)) {
-                if (lower.includes(key.toLowerCase())) return icon;
-            }
-            return '🍕';
-        }
 
         // Pizza type descriptions
         const pizzaTypeDescriptions = {
@@ -787,7 +776,6 @@
 
                 displayRankings(pizzas);
                 displayPizzaTypes(pizzas);
-                displayLegend(pizzas);
             } catch (error) {
                 console.error('Error loading pizza data:', error);
                 document.getElementById('rankings-container').innerHTML = '<p style="color: #c4433c;">Error loading rankings. Please refresh the page.</p>';
@@ -800,6 +788,30 @@
             
             pizzas.forEach(pizza => {
                 const isKnighted = pizza.score >= 7.5;
+
+                // Extract Instagram post ID for embed if instagram link is a post URL
+                let igEmbed = '';
+                if (pizza.instagram) {
+                    // Instagram post URLs contain /p/ or /reel/
+                    const igPostMatch = pizza.instagram.match(/instagram\.com\/(p|reel)\/([A-Za-z0-9_-]+)/);
+                    if (igPostMatch) {
+                        const postUrl = `https://www.instagram.com/${igPostMatch[1]}/${igPostMatch[2]}/`;
+                        igEmbed = `
+                            <div class="ranking-ig-embed">
+                                <iframe 
+                                    src="${postUrl}embed/" 
+                                    width="100%" 
+                                    height="480" 
+                                    frameborder="0" 
+                                    scrolling="no" 
+                                    allowtransparency="true"
+                                    loading="lazy">
+                                </iframe>
+                            </div>
+                        `;
+                    }
+                }
+
                 html += `
                     <div class="ranking-item">
                         <div class="ranking-header">
@@ -816,6 +828,7 @@
                             ${pizza.website ? `<a href="${pizza.website}" target="_blank" class="ranking-link">🌐 Website</a>` : ''}
                             ${pizza.instagram ? `<a href="${pizza.instagram}" target="_blank" class="ranking-link">📸 Instagram</a>` : ''}
                         </div>
+                        ${igEmbed}
                     </div>
                 `;
             });
@@ -827,43 +840,57 @@
             const uniqueStyles = [...new Set(pizzas.map(p => p.style))];
             const container = document.getElementById('pizza-types-container');
             
-            // Always include Flatbread and Gluten Free in the guide
+            // Always include Flatbread and Gluten Free
             const allStyles = new Set(uniqueStyles);
             allStyles.add('Flatbread');
             allStyles.add('Gluten Free');
 
+            // Group pizzas by style for the ranked sub-lists
+            const pizzasByStyle = {};
+            pizzas.forEach(p => {
+                const key = p.style;
+                if (!pizzasByStyle[key]) pizzasByStyle[key] = [];
+                pizzasByStyle[key].push(p);
+            });
+
             let html = '';
             allStyles.forEach(style => {
                 if (pizzaTypeDescriptions[style]) {
+                    // Build ranked list for this style
+                    const stylePizzas = pizzasByStyle[style] || [];
+                    let rankedHtml = '';
+                    
+                    if (stylePizzas.length > 0) {
+                        rankedHtml = `
+                            <div class="type-ranked-list">
+                                <h4>Rated in this category</h4>
+                                ${stylePizzas.map(p => {
+                                    const knighted = p.score >= 7.5;
+                                    return `
+                                        <div class="type-ranked-item">
+                                            <div>
+                                                <span class="type-ranked-name">${p.name}</span>
+                                                <span class="type-ranked-location">· ${p.location}</span>
+                                            </div>
+                                            <span class="type-ranked-score ${knighted ? 'knighted' : ''}">${p.score.toFixed(1)}${knighted ? ' 👑' : ''}</span>
+                                        </div>
+                                    `;
+                                }).join('')}
+                            </div>
+                        `;
+                    }
+
                     html += `
                         <div class="pizza-type">
                             <h3>${style}</h3>
                             <p>${pizzaTypeDescriptions[style]}</p>
+                            ${rankedHtml}
                         </div>
                     `;
                 }
             });
             
             container.innerHTML = html || '<p style="color: #666;">No pizza styles found.</p>';
-        }
-
-        function displayLegend(pizzas) {
-            // Only show styles that appear in the rated pizzas
-            const uniqueStyles = [...new Set(pizzas.map(p => p.style))];
-            const container = document.getElementById('legend-items');
-            
-            let html = '';
-            uniqueStyles.forEach(style => {
-                const icon = getStyleIcon(style);
-                html += `
-                    <div class="legend-item">
-                        <span class="legend-icon">${icon}</span>
-                        <span>${style}</span>
-                    </div>
-                `;
-            });
-            
-            container.innerHTML = html || '<span style="color: #666;">No styles found.</span>';
         }
 
         loadPizzaData();
