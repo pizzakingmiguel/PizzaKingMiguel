@@ -274,6 +274,30 @@
             background: #c4433c;
         }
 
+        .type-ranked-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            min-width: 0;
+        }
+
+        .type-ranked-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .type-ranked-link {
+            color: #c4433c;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .type-ranked-link:hover {
+            text-decoration: underline;
+        }
+
         .merch-section {
             text-align: center;
             color: #2a2a2a;
@@ -637,7 +661,7 @@
 
     <div class="container">
         <section id="rankings">
-            <h2>Rated from 1-10. Only the Best are Knighted by the Pizza King</h2>
+            <h2>Rated from 1–10. Only the Best are Knighted 👑</h2>
             <div class="ranking-system">
                 <div class="knighted-badge">
                     👑 Knighted by the Pizza King 👑<br>
@@ -671,7 +695,7 @@
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>
-            <p style="text-align: center; margin-top: 1.5rem; color: #666; font-size: 0.95rem;">Click markers to see pizza details and scores</p>
+            <p style="text-align: center; margin-top: 1.5rem; color: #666; font-size: 0.95rem;">Explore every pizza I've rated around the world</p>
         </section>
 
         <section id="pizza-types">
@@ -823,14 +847,24 @@
                     if (stylePizzas.length > 0) {
                         rankedHtml = `
                             <div class="type-ranked-list">
-                                <h4>Rated in this category</h4>
+                                <h4>View Top ${style} Pizzas →</h4>
                                 ${stylePizzas.map(p => {
                                     const knighted = p.score >= 7.5;
+                                    let links = '';
+                                    if (p.website || p.instagram) {
+                                        links = `<div class="type-ranked-links">
+                                            ${p.website ? `<a href="${p.website}" target="_blank" class="type-ranked-link">🌐 Website</a>` : ''}
+                                            ${p.instagram ? `<a href="${p.instagram}" target="_blank" class="type-ranked-link">📸 Instagram</a>` : ''}
+                                        </div>`;
+                                    }
                                     return `
                                         <div class="type-ranked-item">
-                                            <div>
-                                                <span class="type-ranked-name">${p.name}</span>
-                                                <span class="type-ranked-location">· ${p.location}</span>
+                                            <div class="type-ranked-info">
+                                                <div>
+                                                    <span class="type-ranked-name">${p.name}</span>
+                                                    <span class="type-ranked-location">· ${p.location}</span>
+                                                </div>
+                                                ${links}
                                             </div>
                                             <span class="type-ranked-score ${knighted ? 'knighted' : ''}">${p.score.toFixed(1)}${knighted ? ' 👑' : ''}</span>
                                         </div>
