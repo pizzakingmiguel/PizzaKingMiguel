@@ -438,6 +438,29 @@
             border-radius: 2px;
         }
 
+        /* Photo banners */
+        .photo-banner {
+            width: 100%;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .photo-banner img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .merch-image {
+            max-width: 500px;
+            width: 100%;
+            border-radius: 2px;
+            margin: 1.5rem auto;
+            display: block;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+
         /* ==================== */
         /* MOBILE OPTIMIZATIONS */
         /* ==================== */
@@ -551,6 +574,15 @@
                 height: 400px;
             }
 
+            /* Photo banners */
+            .photo-banner img {
+                height: 250px;
+            }
+
+            .merch-image {
+                max-width: 100%;
+            }
+
             /* Pizza types */
             .pizza-type {
                 padding: 1.5rem;
@@ -659,6 +691,10 @@
         </ul>
     </nav>
 
+    <div class="photo-banner">
+        <img src="__hero-banner.jpg.png" alt="Pizza King Miguel — the best pizza, one slice at a time">
+    </div>
+
     <div class="container">
         <section id="rankings">
             <h2>Rated from 1–10. Only the Best are Knighted 👑</h2>
@@ -698,6 +734,10 @@
             <p style="text-align: center; margin-top: 1.5rem; color: #666; font-size: 0.95rem;">Explore every pizza I've rated around the world</p>
         </section>
 
+        <div class="photo-banner">
+            <img src="__pizza-lifestyle.jpg.png" alt="Pizza King Miguel on the hunt for great pizza">
+        </div>
+
         <section id="pizza-types">
             <h2>Pizza Types Guide</h2>
             <div class="pizza-types" id="pizza-types-container">
@@ -708,6 +748,7 @@
         <section id="merch">
             <h2>Pizza King Shop</h2>
             <div class="merch-section">
+                <img src="Merch.png" alt="Pizza King Miguel official merch" class="merch-image">
                 <p>Rep the Pizza King with official hats and gear.</p>
                 <a href="https://www.etsy.com/shop/PizzaKingMiguel?ref=dashboard-header" target="_blank" class="merch-button">Shop Pizza King Merch on Etsy</a>
                 <p style="margin-top: 1.5rem; color: #666; font-size: 0.9rem;">More items coming soon.</p>
